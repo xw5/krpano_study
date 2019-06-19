@@ -1,6 +1,7 @@
 ﻿<krpano version="1.19" title="">
 
 	<include url="skin/vtourskin.xml" />
+  <include url="%SWFPATH%/plugins/showtext.xml" />
 
 	<!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
 	<skin_settings maps="false"
@@ -73,18 +74,31 @@
 		if(startactions !== null, startactions() );
 	</action>
 
-  <!-- ui设计 企业logo -->
-  <layer name="ui_logo" type="image" url="./images/logo.png" keep="true" devices="all" parent="id_001_0" visible="true" enabled="true" handcursor="true" maskchildren="false" scalechildren="false" zorder="0" style="" align="lefttop" edge="" x="50" y="50" rotate="0.0" width="" height="" scale="1.0" altscale="0.75" alpha="1.0"   
-  onclick="openurl('http://www.baidu.com', _blank)"
+<!-- 文字样式 -->
+<textstyle name="tips"
+  font="Arial"
+  fontsize="14"
+  bold="true"
+  textcolor="0xcdcdcd"
+  background="false"
+  border="false"
+  textalign="center"
+  showtime="0.1" fadeintime="0.1" fadetime="0.1"
   />
+  <!-- ui设计 企业logo -->
+  <layer name="ui_logo" type="image" url="./images/logo.png" keep="true" devices="all" parent="id_001_0" visible="true" enabled="true" handcursor="true" maskchildren="false" scalechildren="false" zorder="0" style="" align="lefttop" edge="" x="10" y="10" rotate="0.0" width="" height="" scale="1.0" altscale="0.75" alpha="1.0" onclick="openurl('http://www.baidu.com', _blank)"/>
 
   <!-- ui设计 按钮 -->
-  <layer name="ui_anniu" type="image" url="./images/copter_st1.png" keep="true" devices="all" parent="id_001_0" visible="true" enabled="true" handcursor="true" maskchildren="false" scalechildren="false" zorder="1" style="" align="center" edge="center" x="0" y="0" rotate="0.0" width="" height="" scale="1.0" altscale="1.0" alpha="1.0"   
-  onclick="switch(layer[ui_win].visible);set(layer[ui_logo].visible, false);"
-  />
+  <layer name="ui_anniu" type="image" url="./images/copter_st1.png" keep="true" devices="all" parent="id_001_0" visible="true" enabled="true" handcursor="true" maskchildren="false" scalechildren="false" zorder="1" style="" align="left" edge="left" x="0" y="0" rotate="0.0" width="" height="" scale="1.0" altscale="1.0" alpha="1.0" onclick="tween(layer[ui_win].scale,1.0,0.5);switch(layer[ui_win].visible)"/>
 
   <!-- ui设计 弹窗 -->
-  <layer name="ui_win" type="image" url="./images/000.jpg" keep="true" devices="all" parent="" visible="false" enabled="true" handcursor="true" maskchildren="false" scalechildren="false" zorder="1" style="" align="center" edge="center" x="0" y="0" rotate="0.0" width="" height="" scale="1.0" altscale="0.5" alpha="1.0" />
+  <layer name="ui_win" type="image" url="./images/000.jpg" keep="true" devices="all" parent="" visible="false" enabled="true" handcursor="true" maskchildren="false" scalechildren="true" zorder="1" style="" align="center" edge="center" x="0" y="0" rotate="0.0" width="" height="" scale="0" altscale="1" alpha="1.0">
+    <layer name="ui_win_close" type="image" url="./images/000.jpg" keep="true" devices="all" parent="" visible="true" enabled="true" handcursor="true" maskchildren="false" scalechildren="false" zorder="1" style="" align="righttop" edge="righttop" x="" y="" crop="712|0|36|36" rotate="0.0" width="36" height="36" scale="1.0" altscale="1.0" alpha="1.0" onclick="tween(layer[ui_win].scale,0.0,0.5);delayedcall(0.5,switch(layer[ui_win].visible));" onhover="showtext(关闭,tips)"/>
+
+    <layer name="ui_win_detail" type="image" url="./images/000.jpg" keep="true" devices="all" parent="" visible="true" enabled="true" handcursor="true" maskchildren="false" scalechildren="false" zorder="1" style="" align="" edge="lefttop" x="384" y="429" crop="384|429|100|31" rotate="0.0" width="100" height="31" scale="1.0" altscale="1.0" alpha="1.0" onclick="openurl('http://www.baidu.com', _blank)" onhover="showtext(查看详情,tips)"/>
+
+    <layer name="ui_win_buy" type="image" url="./images/000.jpg" keep="true" devices="all" parent="" visible="true" enabled="true" handcursor="true" maskchildren="false" scalechildren="false" zorder="1" style="" align="" edge="lefttop" x="496" y="428" crop="496|428|100|31" rotate="0.0" width="100" height="31" scale="1.0" altscale="1.0" alpha="1.0" onclick="openurl('http://www.baidu.com', _blank)" onhover="showtext(网上商城,tips)"/>
+  </layer>
 
   <!-- <layer name="id_001" type="container" keep="true" devices="all" parent="id_001_0" visible="true" enabled="true" handcursor="true" maskchildren="false" scalechildren="false" zorder="0" style="" align="center" edge="" x="0" y="0" rotate="0.0" width="200" height="200" scale="1.0" altscale="1.0" alpha="1.0" crop="" onovercrop="" ondowncrop="" bgcolor="0x000000" bgalpha="1.0" bgcapture="false" 
   onover="" 
